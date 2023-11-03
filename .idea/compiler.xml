@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="User_MicroService" />
         <module name="Authenticate_MicroService" />
+        <module name="Hotel_MicroService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,6 +20,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Authenticate_MicroService" options="-parameters" />
+      <module name="Hotel_MicroService" options="-parameters" />
       <module name="User_MicroService" options="-parameters" />
       <module name="authenticate_micro_service" options="-parameters" />
       <module name="hotel_micro_service" options="-parameters" />
