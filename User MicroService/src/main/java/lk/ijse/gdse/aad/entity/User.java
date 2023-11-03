@@ -15,7 +15,7 @@ import java.sql.Date;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private int id;
     private String username;
     private String password;
     @Column(unique = true)
@@ -28,6 +28,5 @@ public class User {
     private String nicRearImg;
     private String profilePic;
     private String gender;
-    private String type;
     private String remarks;
 }
