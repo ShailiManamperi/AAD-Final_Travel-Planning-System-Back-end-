@@ -7,9 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Guide_MicroService" />
         <module name="User_MicroService" />
         <module name="Authenticate_MicroService" />
+        <module name="Travel_MicroService" />
         <module name="Hotel_MicroService" />
+        <module name="Vehicle_MicroService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -20,8 +23,11 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Authenticate_MicroService" options="-parameters" />
+      <module name="Guide_MicroService" options="-parameters" />
       <module name="Hotel_MicroService" options="-parameters" />
+      <module name="Travel_MicroService" options="-parameters" />
       <module name="User_MicroService" options="-parameters" />
+      <module name="Vehicle_MicroService" options="-parameters" />
       <module name="authenticate_micro_service" options="-parameters" />
       <module name="hotel_micro_service" options="-parameters" />
     </option>
