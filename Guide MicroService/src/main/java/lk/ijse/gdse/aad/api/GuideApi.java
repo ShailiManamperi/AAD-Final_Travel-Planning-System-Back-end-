@@ -36,12 +36,6 @@ public class GuideApi {
                                     @RequestPart("nicFront")byte[] nicFront,
                                     @RequestPart("nicRear") byte[] nicRear,
                                     @RequestPart("profilePic")byte[] profilePic) {
-        System.out.println(name+" , "+address+" , "+contact+" , "+date+" , "+value+" , "+experience);
-        System.out.println(guideIdFront.length  );
-        System.out.println(guideIdRear);
-        System.out.println(nicFront);
-        System.out.println(nicRear);
-        System.out.println(profilePic);
         GuideDTO guideDTO = new GuideDTO();
         guideDTO.setName(name);
         guideDTO.setAddress(address);

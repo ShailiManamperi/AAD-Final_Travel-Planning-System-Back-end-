@@ -90,11 +90,8 @@ public class GuideServiceImpl implements GuideService {
                 + LocalTime.now().toString().replace(":", "_");
         try {
             InputStream is = new ByteArrayInputStream(guideDTO.getGuideIdFront());
-            System.out.println("is "+is);
             BufferedImage bi = ImageIO.read(is);
-            System.out.println("bi" +bi);
             File outputfile = new File("images/guide/front/" + dt + "_" + ".jpg");
-            System.out.println("outfile "+outputfile);
             ImageIO.write(bi, "jpg", outputfile);
             guide.setGuideIdFront(outputfile.getAbsolutePath());
 
