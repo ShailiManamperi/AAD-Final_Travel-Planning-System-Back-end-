@@ -17,9 +17,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @Controller
 @RequestMapping("/api/v1/login")
-@CrossOrigin
+
 public class AuthenticationApi {
 
     private final AuthenticationManager authenticationManager;
@@ -46,7 +47,8 @@ public class AuthenticationApi {
             System.out.println(user.getId());
             String token = jwtUtil.createToken(user);
             System.out.println("token : " +token );
-            LoginRes loginRes = new LoginRes(email,token);
+            LoginRes loginRes = new LoginRes(email,token,"Guide_Admin");
+            System.out.println(loginRes);
             return ResponseEntity.ok(loginRes);
 
         }catch (BadCredentialsException e){
