@@ -12,4 +12,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ToString
 public class LoginRes {
     private String email;
+    private String code;
+    private String role;
 }
