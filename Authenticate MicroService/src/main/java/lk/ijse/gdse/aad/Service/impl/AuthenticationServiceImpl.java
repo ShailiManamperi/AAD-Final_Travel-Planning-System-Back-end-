@@ -6,6 +6,7 @@ import lk.ijse.gdse.aad.Dto.AdminDTO;
 import lk.ijse.gdse.aad.Entity.Admin;
 import lk.ijse.gdse.aad.Repo.AuthenticateRepo;
 import lk.ijse.gdse.aad.Service.AuthenticationService;
+import lk.ijse.gdse.aad.exception.SaveFailException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.modelmapper.ModelMapper;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +53,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 //        map.setType(strings);
         System.out.println(map);
         return map;
+    }
+
+    @Override
+    public int saveAdmin(AdminDTO adminDTO) throws SaveFailException {
+        try {
+            Admin admin = modelMapper.map(adminDTO, Admin.class);
+            return adminRepository.save(admin).getId();
+        }catch (Exception e){
+            throw new SaveFailException("Operation Fail", e);
+        }
     }
 
     ArrayList<String> jsonStringToArray(String jsonString) throws JSONException {

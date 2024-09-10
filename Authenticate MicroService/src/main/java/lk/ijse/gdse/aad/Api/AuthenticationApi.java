@@ -7,6 +7,7 @@ import lk.ijse.gdse.aad.Dto.ErrorRes;
 import lk.ijse.gdse.aad.Dto.LoginReq;
 import lk.ijse.gdse.aad.Dto.LoginRes;
 import lk.ijse.gdse.aad.Service.AuthenticationService;
+import lk.ijse.gdse.aad.exception.SaveFailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +34,9 @@ public class AuthenticationApi {
 
     }
 
-    @ResponseBody
-    @RequestMapping(method = RequestMethod.POST)
+//    @ResponseBody
+//    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping("/login")
     public ResponseEntity login(@RequestBody LoginReq loginReq)  {
         System.out.println(loginReq);
         try {
@@ -47,7 +49,7 @@ public class AuthenticationApi {
             System.out.println(user.getId());
             String token = jwtUtil.createToken(user);
             System.out.println("token : " +token );
-            LoginRes loginRes = new LoginRes(email,token,"Guide_Admin");
+            LoginRes loginRes = new LoginRes(email,token,user.getType());
             System.out.println(loginRes);
             return ResponseEntity.ok(loginRes);
 
@@ -63,5 +65,27 @@ public class AuthenticationApi {
     @GetMapping("/{email}")
     public ResponseEntity getUser(@PathVariable String email){
         return ResponseEntity.ok(adminServiceImpl.searchUser(email));
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity saveUser(
+//                                   @RequestParam("email")String email,
+//                                   @RequestParam("password")String password,
+//                                   @RequestParam("type") String type,
+//                                   @RequestParam("username") String username,
+//                                   @RequestParam("usernic") String usernic
+                                     @RequestBody AdminDTO adminDTO1){
+        AdminDTO adminDTO = new AdminDTO();
+        adminDTO.setEmail(adminDTO1.getEmail());
+        adminDTO.setType(adminDTO1.getType());
+        adminDTO.setUsernic(adminDTO1.getUsernic());
+        adminDTO.setUsername(adminDTO1.getUsername());
+        adminDTO.setPassword(adminDTO1.getPassword());
+        try {
+            int i = adminServiceImpl.saveAdmin(adminDTO);
+            return new ResponseEntity<>(i, HttpStatus.CREATED);
+        } catch (SaveFailException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        }
     }
 }
